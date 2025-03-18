@@ -1,6 +1,6 @@
 ﻿namespace BibliotecaMVC.Models
 {
-    public class Autor : Usuario
+    public class Autor
     {
         public int Id { get; set; } // Clave primaria
         public string Nombre { get; set; } // Nombre del autor

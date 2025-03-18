@@ -1,6 +1,6 @@
 ﻿namespace BibliotecaMVC.Models
 {
-    public class Prestamo : Usuario
+    public class Prestamo
     {
         public int Id { get; set; }
         public int LibroId { get; set; } // Clave foránea para el libro
