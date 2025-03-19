@@ -1,0 +1,60 @@
+﻿@model BibliotecaMVC.DTOs.LibroDTO
+
+@{
+    ViewData["Title"] = "Editar Libro";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded">
+        <div class="card-header bg-secondary text-white text-center py-3">
+            <h3 class="mb-0">@ViewData["Title"]</h3>
+        </div>
+        <div class="card-body p-4">
+            @* @await Html.PartialAsync("_Alerts") *@
+
+            <form method="post" class="p-3" enctype="multipart/form-data">
+                <!-- Campo para el Título del Libro -->
+                <div class="mb-3">
+                    <label asp-for="Titulo" class="form-label fs-5 fw-semibold"></label>
+                    <input asp-for="Titulo" class="form-control form-control-lg" placeholder="Ingrese el título del libro" />
+                    <span asp-validation-for="Titulo" class="text-danger small"></span>
+                </div>
+
+                <!-- Dropdown para seleccionar el Autor -->
+                <div class="mb-3">
+                    <label asp-for="AutorId" class="form-label fs-5 fw-semibold"></label>
+                    <select asp-for="AutorId" class="form-control form-control-lg" asp-items="ViewBag.Autores">
+                        <option value="">Seleccione un autor</option>
+                    </select>
+                    <span asp-validation-for="AutorId" class="text-danger small"></span>
+                </div>
+
+                <!-- Dropdown para seleccionar la Editorial -->
+                <div class="mb-3">
+                    <label asp-for="EditorialId" class="form-label fs-5 fw-semibold"></label>
+                    <select asp-for="EditorialId" class="form-control form-control-lg" asp-items="ViewBag.Editoriales">
+                        <option value="">Seleccione una editorial</option>
+                    </select>
+                    <span asp-validation-for="EditorialId" class="text-danger small"></span>
+                </div>
+
+                <!-- Campo para cargar la imagen de portada -->
+                <div class="mb-3">
+                    <label asp-for="ImagenPortada" class="form-label fs-5 fw-semibold"></label>
+                    <input asp-for="ImagenPortada" class="form-control form-control-lg" placeholder="Ingrese la URL de la imagen de portada" />
+                    <span asp-validation-for="ImagenPortada" class="text-danger small"></span>
+                </div>
+
+                <!-- Botones de acción -->
+                <div class="text-center mt-4">
+                    <a href="@Url.Action("Index", "Libro")" class="btn btn-outline-secondary px-4 py-2">
+                        <i class="fas fa-arrow-left"></i> Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-success px-4 py-2 ms-2">
+                        <i class="fas fa-save"></i> Guardar cambios
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

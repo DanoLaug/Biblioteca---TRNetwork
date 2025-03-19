@@ -102,7 +102,7 @@ namespace BibliotecaMVC.Controllers
         }
 
         // Acción para mostrar la confirmación de eliminación
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> ConfirmDelete(int id)
         {
             var autor = await _autorService.GetByIdAsync(id);
 
@@ -115,9 +115,9 @@ namespace BibliotecaMVC.Controllers
             return View(autor); // Muestra la vista de confirmación de eliminación
         }
         
-        // Acción para eliminar un producto
+        // Acción para eliminar 
         [HttpPost, ActionName("Delete")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {

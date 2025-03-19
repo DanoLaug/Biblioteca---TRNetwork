@@ -12,9 +12,9 @@ namespace BibliotecaMVC.DTOs
         [Required(ErrorMessage = "El nombre es obligatorio")]
         public string Titulo { get; set; } // Título del libro
         public int AutorId { get; set; } // Clave foránea para el autor
-        public string? Autor { get; set; } // Relación con el autor
+        public string? AutorNombre { get; set; } // Relación con el autor
         public int EditorialId { get; set; } // Clave foránea para la editorial
-        public string? Editorial { get; set; } // Relación con la editorial
+        public string? EditorialNombre { get; set; } // Relación con la editorial
         public string? ImagenPortada { get; set; } //Ruta de la imagen obtenida de la base de datos
         public IFormFile File { get; set; } //Archivo de imagen cargada en la vista Create
     }

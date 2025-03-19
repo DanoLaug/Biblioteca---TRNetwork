@@ -1,0 +1,44 @@
+﻿@model BibliotecaMVC.DTOs.LibroDTO
+
+@{
+    ViewData["Title"] = "Eliminar Libro";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded">
+        <div class="card-header bg-secondary text-white text-center py-3">
+            <h3 class="mb-0">@ViewData["Title"]</h3>
+        </div>
+        <div class="card-body p-4">
+            <h5 class="text-center text-danger fw-bold">
+                <i class="fas fa-exclamation-triangle"></i> ¿Estás seguro de que deseas eliminar este libro?
+            </h5>
+
+            <div class="row mt-4">
+                <div class="col-md-6 offset-md-3">
+                    <dl class="row">
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.Titulo):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.Titulo)</dd>
+
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.AutorNombre):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.AutorNombre)</dd>
+
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.EditorialNombre):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.EditorialNombre)</dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="@Url.Action("Index", "Libro")" class="btn btn-outline-secondary px-4 py-2">
+                    <i class="fas fa-arrow-left"></i> Cancelar
+                </a>
+                <button type="submit" form="delete-form" class="btn btn-danger px-4 py-2 ms-2">
+                    <i class="fas fa-trash-alt"></i> Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <form id="delete-form" method="post" action="@Url.Action("Delete", "Libro", new { id = Model.Id })" class="d-none"></form>
+</div>

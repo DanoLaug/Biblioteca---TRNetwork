@@ -1,0 +1,54 @@
+﻿@model BibliotecaMVC.DTOs.LibroDTO
+
+@{
+    ViewData["Title"] = "Detalle del Libro";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded">
+        <div class="card-header bg-secondary text-white text-center py-3">
+            <h3 class="mb-0">@ViewData["Title"]</h3>
+        </div>
+        <div class="card-body p-4">
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.Titulo):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.Titulo)</dd>
+
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.AutorNombre):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.AutorNombre)</dd>
+
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.EditorialNombre):</dt>
+                        <dd class="col-7">@Html.DisplayFor(model => model.EditorialNombre)</dd>
+
+                        <dt class="col-5 fw-bold">@Html.DisplayNameFor(model => model.ImagenPortada):</dt>
+                        <dd class="col-7">
+                            @if (!string.IsNullOrEmpty(Model.ImagenPortada))
+                            {
+                                <img src="@Model.ImagenPortada" alt="Portada del libro" class="img-thumbnail" style="max-width: 200px;" />
+                            }
+                            else
+                            {
+                                <span class="text-muted">No hay imagen disponible</span>
+                            }
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="@Url.Action("Index", "Libro")" class="btn btn-outline-secondary px-4 py-2">
+                    <i class="fas fa-arrow-left"></i> Volver a la lista
+                </a>
+                <a href="@Url.Action("Edit", "Libro", new { id = Model.Id })" class="btn btn-secondary text-white px-4 py-2 ms-2">
+                    <i class="fas fa-edit"></i> Editar
+                </a>
+                <a href="@Url.Action("Delete", "Libro", new { id = Model.Id })" class="btn btn-danger px-4 py-2 ms-2">
+                    <i class="fas fa-trash-alt"></i> Eliminar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

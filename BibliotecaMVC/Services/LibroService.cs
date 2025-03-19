@@ -57,6 +57,7 @@ namespace BibliotecaMVC.Services
                     Id = p.Id,
                     Titulo = p.Titulo,
                     AutorId = p.AutorId,
+                    AutorNombre = p.Autor.Nombre,
                     EditorialId = p.EditorialId,
                     ImagenPortada = p.ImagenPortada
                 })
@@ -81,9 +82,9 @@ namespace BibliotecaMVC.Services
                 Id = libro.Id,
                 Titulo = libro.Titulo,
                 AutorId = libro.AutorId,
-                Autor = libro.Autor.Nombre,
+                AutorNombre = libro.Autor.Nombre,
                 EditorialId = libro.EditorialId,
-                Editorial = libro.Editorial.Nombre,
+                EditorialNombre = libro.Editorial.Nombre,
                 ImagenPortada = libro.ImagenPortada
             };
         }
