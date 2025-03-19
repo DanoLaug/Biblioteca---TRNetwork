@@ -40,7 +40,7 @@ namespace BibliotecaMVC.Services
             }
 
             //autor.IsDeleted = true;
-            _context.Autores.Update(autor);
+            _context.Autores.Remove(autor);
             await _context.SaveChangesAsync();
         }
 

@@ -1,6 +1,7 @@
 ﻿using BibliotecaMVC.DTOs;
 using BibliotecaMVC.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Threading.Tasks;
 
 namespace BibliotecaMVC.Controllers
@@ -79,18 +80,23 @@ namespace BibliotecaMVC.Controllers
         // Acción para mostrar el formulario de edición de un libro
         public async Task<IActionResult> Edit(int id)
         {
-            var libro = await _libroService.GetByIdAsync(id);
+            LibroDTO libroDTO = await _libroService.GetByIdAsync(id);
 
-            if (libro == null)
+            if (libroDTO == null)
             {
                 TempData["ErrorMessage"] = "El Libro no existe.";
                 return RedirectToAction("Index");
             }
 
             // Cargar listas de autores y editoriales
-            ViewBag.Autores = await _autorService.GetAllAsync();
-            ViewBag.Editoriales = await _editorialService.GetAllAsync();
-            return View(libro); // Muestra la vista de edición con los datos del libro
+            // Recargar listas de autores y editoriales en caso de error
+            var autores = await _autorService.GetAllAsync();
+            ViewBag.Autores = new SelectList(autores, "Id", "Nombre");
+
+            var editoriales = await _editorialService.GetAllAsync();
+            ViewBag.Editoriales = new SelectList(editoriales, "Id", "Nombre");
+
+            return View(libroDTO);
         }
 
         // Acción para procesar el formulario de edición de libro
@@ -105,34 +111,26 @@ namespace BibliotecaMVC.Controllers
                     TempData["SuccessMessage"] = "Libro actualizado exitosamente.";
                     return RedirectToAction("Index");
                 }
-                // Recargar listas de autores y editoriales en caso de error
-                ViewBag.Autores = await _autorService.GetAllAsync();
-                ViewBag.Editoriales = await _editorialService.GetAllAsync();
+                
                 return View(libroDTO);
             }
             catch (Exception e)
             {
                 TempData["ErrorMessage"] = $"Hubo un error al actualizar el Libro: {e.Message}";
+
+                // Recargar listas de autores y editoriales en caso de error
+                var autores = await _autorService.GetAllAsync();
+                ViewBag.Autores = new SelectList(autores, "Id", "Nombre");
+
+                var editoriales = await _editorialService.GetAllAsync();
+                ViewBag.Editoriales = new SelectList(editoriales, "Id", "Nombre");
+
+                return View(libroDTO);
             }
-            return View(libroDTO);
-        }
-
-        // Acción para mostrar la confirmación de eliminación
-        public async Task<IActionResult> ConfirmDelete(int id)
-        {
-            var libro = await _libroService.GetByIdAsync(id);
-
-            if (libro == null)
-            {
-                TempData["ErrorMessage"] = "El Libro no existe.";
-                return RedirectToAction("Index");
-            }
-
-            return View(libro); // Muestra la vista de confirmación de eliminación
+            
         }
 
         // Acción para eliminar un libro
-        [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> Delete(int id)
         {
             try

@@ -100,23 +100,8 @@ namespace BibliotecaMVC.Controllers
             }
             return View(autorDTO);
         }
-
-        // Acción para mostrar la confirmación de eliminación
-        public async Task<IActionResult> ConfirmDelete(int id)
-        {
-            var autor = await _autorService.GetByIdAsync(id);
-
-            if (autor == null)
-            {
-                TempData["ErrorMessage"] = "El Autor no existe.";
-                return RedirectToAction("Index");
-            }
-
-            return View(autor); // Muestra la vista de confirmación de eliminación
-        }
         
         // Acción para eliminar 
-        [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> Delete(int id)
         {
             try

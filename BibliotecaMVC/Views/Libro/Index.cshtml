@@ -23,7 +23,7 @@
                     <th scope="col">@Html.DisplayNameFor(m => m.ImagenPortada)</th>
                     <th scope="col">@Html.DisplayNameFor(m => m.AutorNombre)</th>
                     <th scope="col">@Html.DisplayNameFor(m => m.EditorialNombre)</th>
-                    <th scope="col">Acciones</th
+                    <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,7 +33,7 @@
                     {
                         <tr>
                             <td>@Html.DisplayFor(m => item.Titulo)</td>
-                            <td>@Html.DisplayFor(m => item.ImagenPortada)</td>
+                            <td><img src="@item.ImagenPortada" alt="Logo" width="100" /></td>
                             <td>@Html.DisplayFor(m => item.AutorNombre)</td> 
                             <td>@Html.DisplayFor(m => item.EditorialNombre)</td> 
                             <td>

@@ -9,26 +9,45 @@ namespace BibliotecaMVC.Services
     {
         //Inyecciones
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _env;
 
-        public LibroService(ApplicationDbContext context)
+        public LibroService(ApplicationDbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         //Métodos
         //Método para agregar
         public async Task AddAsync(LibroDTO libroDTO)
         {
+            var imagenPortada = await UploadImage(libroDTO.File);
             var libro = new Libro
             {
                 Titulo = libroDTO.Titulo,
                 AutorId = libroDTO.AutorId,
                 EditorialId = libroDTO.EditorialId,
-                ImagenPortada = libroDTO.ImagenPortada
+                ImagenPortada = imagenPortada
 
             };
             await _context.Libros.AddAsync(libro);
             await _context.SaveChangesAsync();
+        }
+
+        private async Task<string> UploadImage(IFormFile file)
+        {
+            // Guardar la imagen en el servidor y generar la ruta
+            var fileName = Path.GetFileNameWithoutExtension(file.FileName)
+                            + Guid.NewGuid().ToString()
+                            + Path.GetExtension(file.FileName);
+            var filePath = Path.Combine(_env.WebRootPath, "images", fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            return $"/images/{fileName}";
         }
 
         //Método para eliminar
@@ -43,7 +62,7 @@ namespace BibliotecaMVC.Services
             }
 
             //libro.IsDeleted = true;
-            _context.Libros.Update(libro);
+            _context.Libros.Remove(libro);
             await _context.SaveChangesAsync();
         }
 
