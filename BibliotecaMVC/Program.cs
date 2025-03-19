@@ -1,10 +1,15 @@
 using Microsoft.EntityFrameworkCore;
-using BibliotecaMVC.Data; // Asegurarme de usar el namespace correcto
+using BibliotecaMVC.Data;
+using BibliotecaMVC.Services; // Asegurarme de usar el namespace correcto
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Configurar servicios
 builder.Services.AddControllersWithViews();
+
+////Agregar servicios
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IAutorService, AutorService>();
 
 // Registrar el DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

@@ -1,6 +1,6 @@
 ﻿namespace BibliotecaMVC.Models
 {
-    public class Libro
+    public class Libro : Registry
     {
         public int Id { get; set; } // Clave primaria
         public string Titulo { get; set; } // Título del libro

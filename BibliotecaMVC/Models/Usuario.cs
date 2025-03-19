@@ -1,7 +1,7 @@
 ﻿//Usuario funciona como Registro de usuarios, donde se almacenan los datos.
 namespace BibliotecaMVC.Models
 {
-    public class Usuario
+    public class Usuario : Registry
     {
         public int Id { get; set; } // Clave primaria
         public string Nombre { get; set; } // Nombre del usuario
