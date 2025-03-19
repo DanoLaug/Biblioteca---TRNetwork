@@ -3,7 +3,7 @@ using BibliotecaMVC.Models;
 
 namespace BibliotecaMVC.DTOs
 {
-    public class AutorDTO : Registry
+    public class AutorDTO
     {
         public int Id { get; set; } // Clave primaria
 

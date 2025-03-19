@@ -10,6 +10,8 @@ builder.Services.AddControllersWithViews();
 ////Agregar servicios
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<IAutorService, AutorService>();
+builder.Services.AddScoped<ILibroService, LibroService>();
+builder.Services.AddScoped<IPrestamoService, PrestamoService>();
 
 // Registrar el DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

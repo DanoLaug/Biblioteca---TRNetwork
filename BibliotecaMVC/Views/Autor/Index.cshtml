@@ -1,0 +1,58 @@
+﻿@model IEnumerable<BibliotecaMVC.DTOs.AutorDTO>
+
+@{
+    ViewData["Title"] = "Listado de Autores";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="display-6">@ViewData["Title"]</h2>
+        <a href="@Url.Action("Create", "Autor")" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Agregar Autor
+        </a>
+    </div>
+
+    @* @await Html.PartialAsync("_Alerts") *@
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">@Html.DisplayNameFor(m => m.Nombre)</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Any())
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(m => item.Nombre)</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="@Url.Action("Edit", "Autor", new { id = item.Id })" class="btn btn-sm btn-secondary m-2">
+                                        <i class="bi bi-pencil"></i> Editar
+                                    </a>
+                                    <a href="@Url.Action("Details", "Autor", new { id = item.Id })" class="btn btn-sm btn-info m-2">
+                                        <i class="bi bi-eye"></i> Detalles
+                                    </a>
+                                    <a href="@Url.Action("Delete", "Autor", new { id = item.Id })" class="btn btn-sm btn-danger m-2">
+                                        <i class="bi bi-trash"></i> Eliminar
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="2" class="text-center">No hay autores disponibles</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

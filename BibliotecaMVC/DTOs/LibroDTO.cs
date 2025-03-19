@@ -4,7 +4,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BibliotecaMVC.DTOs
 {
-    public class LibroDTO : Registry
+    public class LibroDTO
     {
         public int Id { get; set; } // Clave primaria
 

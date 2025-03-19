@@ -39,7 +39,7 @@ namespace BibliotecaMVC.Services
                 throw new ApplicationException("El Autor no existe.");
             }
 
-            autor.IsDeleted = true;
+            //autor.IsDeleted = true;
             _context.Autores.Update(autor);
             await _context.SaveChangesAsync();
         }
@@ -48,7 +48,7 @@ namespace BibliotecaMVC.Services
         public async Task<List<AutorDTO>> GetAllAsync()
         {
             return await _context.Autores
-                .Where(p => !p.IsDeleted)
+                //.Where(p => !p.IsDeleted)
                 .Select(p => new AutorDTO
                 {
                     Id = p.Id,

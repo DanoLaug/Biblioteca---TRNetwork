@@ -42,7 +42,7 @@ namespace BibliotecaMVC.Services
                 throw new ApplicationException("El Libro no existe.");
             }
 
-            libro.IsDeleted = true;
+            //libro.IsDeleted = true;
             _context.Libros.Update(libro);
             await _context.SaveChangesAsync();
         }
@@ -51,7 +51,7 @@ namespace BibliotecaMVC.Services
         public async Task<List<LibroDTO>> GetAllAsync()
         {
             return await _context.Libros
-                .Where(p => !p.IsDeleted)
+                //.Where(p => !p.IsDeleted)
                 .Select(p => new LibroDTO
                 {
                     Id = p.Id,

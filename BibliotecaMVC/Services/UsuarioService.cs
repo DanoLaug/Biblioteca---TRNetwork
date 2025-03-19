@@ -43,7 +43,7 @@ namespace BibliotecaMVC.Services
                 throw new ApplicationException("El Usuario no existe.");
             }
 
-            usuario.IsDeleted = true;
+            //usuario.IsDeleted = true;
             _context.Usuarios.Update(usuario);
             await _context.SaveChangesAsync();
         }
@@ -52,7 +52,7 @@ namespace BibliotecaMVC.Services
         public async Task<List<UsuarioDTO>> GetAllAsync()
         {
             return await _context.Usuarios
-                .Where(p => !p.IsDeleted)
+                //.Where(p => !p.IsDeleted)
                 .Select(p => new UsuarioDTO
                 {
                 Id = p.Id,

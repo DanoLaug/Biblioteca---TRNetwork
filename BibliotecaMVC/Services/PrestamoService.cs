@@ -40,7 +40,7 @@ namespace BibliotecaMVC.Services
                 throw new ApplicationException("El Prestamo no existe.");
             }
 
-            prestamo.IsDeleted = true;
+            //prestamo.IsDeleted = true;
             _context.Prestamos.Update(prestamo);
             await _context.SaveChangesAsync();
         }
@@ -49,7 +49,7 @@ namespace BibliotecaMVC.Services
         public async Task<List<PrestamoDTO>> GetAllAsync()
         {
             return await _context.Prestamos
-                .Where(p => !p.IsDeleted)
+                //.Where(p => !p.IsDeleted)
                 .Select(p => new PrestamoDTO
                 {
                     Id = p.Id,

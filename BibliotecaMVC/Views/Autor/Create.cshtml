@@ -1,0 +1,35 @@
+﻿@model BibliotecaMVC.DTOs.AutorDTO
+
+@{
+    ViewData["Title"] = "Agregar Autor";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded">
+        <div class="card-header bg-secondary text-white text-center py-3">
+            <h3 class="mb-0">@ViewData["Title"]</h3>
+        </div>
+        <div class="card-body p-4">
+           @*  @await Html.PartialAsync("_Alerts") <!-- Incluye las alertas de Bootstrap --> *@
+
+            <form method="post" class="p-3">
+                <!-- Campo para el Nombre del Autor -->
+                <div class="mb-3">
+                    <label asp-for="Nombre" class="form-label fs-5 fw-semibold"></label>
+                    <input asp-for="Nombre" type="text" class="form-control form-control-lg" placeholder="Ingrese el nombre del autor" />
+                    <span asp-validation-for="Nombre" class="text-danger small"></span>
+                </div>
+
+                <!-- Botones de acción -->
+                <div class="text-center mt-4">
+                    <a href="@Url.Action("Index", "Autor")" class="btn btn-outline-secondary px-4 py-2">
+                        <i class="fas fa-arrow-left"></i> Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-success px-4 py-2 ms-2">
+                        <i class="fas fa-save"></i> Guardar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
